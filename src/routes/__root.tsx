@@ -7,7 +7,7 @@ export const Route = createRootRoute({
       <div className="p-4 bg-indigo-800 text-white">
         <div className="max-w-6xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">保坂恵吾 ポートフォリオ</h1>
-          <div className="flex gap-6">
+          <div className="flex gap-4 flex-wrap justify-end">
             <Link to="/" className="[&.active]:font-bold hover:text-indigo-200 transition-colors">
               経歴・タイムライン
             </Link>
@@ -16,6 +16,9 @@ export const Route = createRootRoute({
             </Link>
             <Link to="/infrastructure" className="[&.active]:font-bold hover:text-indigo-200 transition-colors">
               IT基盤業務
+            </Link>
+            <Link to="/skills" className="[&.active]:font-bold hover:text-indigo-200 transition-colors">
+              技術スタック
             </Link>
             <Link to="/resources" className="[&.active]:font-bold hover:text-indigo-200 transition-colors">
               リソース

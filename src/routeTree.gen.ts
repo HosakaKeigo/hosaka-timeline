@@ -11,12 +11,19 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SkillsImport } from './routes/skills'
 import { Route as ResourcesImport } from './routes/resources'
 import { Route as InfrastructureImport } from './routes/infrastructure'
 import { Route as CompetitionImport } from './routes/competition'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const SkillsRoute = SkillsImport.update({
+  id: '/skills',
+  path: '/skills',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ResourcesRoute = ResourcesImport.update({
   id: '/resources',
@@ -74,6 +81,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesImport
       parentRoute: typeof rootRoute
     }
+    '/skills': {
+      id: '/skills'
+      path: '/skills'
+      fullPath: '/skills'
+      preLoaderRoute: typeof SkillsImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -84,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/competition': typeof CompetitionRoute
   '/infrastructure': typeof InfrastructureRoute
   '/resources': typeof ResourcesRoute
+  '/skills': typeof SkillsRoute
 }
 
 export interface FileRoutesByTo {
@@ -91,6 +106,7 @@ export interface FileRoutesByTo {
   '/competition': typeof CompetitionRoute
   '/infrastructure': typeof InfrastructureRoute
   '/resources': typeof ResourcesRoute
+  '/skills': typeof SkillsRoute
 }
 
 export interface FileRoutesById {
@@ -99,14 +115,21 @@ export interface FileRoutesById {
   '/competition': typeof CompetitionRoute
   '/infrastructure': typeof InfrastructureRoute
   '/resources': typeof ResourcesRoute
+  '/skills': typeof SkillsRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/competition' | '/infrastructure' | '/resources'
+  fullPaths: '/' | '/competition' | '/infrastructure' | '/resources' | '/skills'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/competition' | '/infrastructure' | '/resources'
-  id: '__root__' | '/' | '/competition' | '/infrastructure' | '/resources'
+  to: '/' | '/competition' | '/infrastructure' | '/resources' | '/skills'
+  id:
+    | '__root__'
+    | '/'
+    | '/competition'
+    | '/infrastructure'
+    | '/resources'
+    | '/skills'
   fileRoutesById: FileRoutesById
 }
 
@@ -115,6 +138,7 @@ export interface RootRouteChildren {
   CompetitionRoute: typeof CompetitionRoute
   InfrastructureRoute: typeof InfrastructureRoute
   ResourcesRoute: typeof ResourcesRoute
+  SkillsRoute: typeof SkillsRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -122,6 +146,7 @@ const rootRouteChildren: RootRouteChildren = {
   CompetitionRoute: CompetitionRoute,
   InfrastructureRoute: InfrastructureRoute,
   ResourcesRoute: ResourcesRoute,
+  SkillsRoute: SkillsRoute,
 }
 
 export const routeTree = rootRoute
@@ -137,7 +162,8 @@ export const routeTree = rootRoute
         "/",
         "/competition",
         "/infrastructure",
-        "/resources"
+        "/resources",
+        "/skills"
       ]
     },
     "/": {
@@ -151,6 +177,9 @@ export const routeTree = rootRoute
     },
     "/resources": {
       "filePath": "resources.tsx"
+    },
+    "/skills": {
+      "filePath": "skills.tsx"
     }
   }
 }
