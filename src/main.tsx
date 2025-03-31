@@ -1,15 +1,18 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { RouterProvider, createRouter, createHashHistory } from '@tanstack/react-router'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
 
-// Create a new router instance with the base path
+// Create hash history
+const hashHistory = createHashHistory()
+
+// Create a new router instance with hash history
 const router = createRouter({
   routeTree,
-  basepath: '/hosaka-timeline',
+  history: hashHistory,
 })
 
 // Register the router instance for type safety
