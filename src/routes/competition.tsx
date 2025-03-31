@@ -127,9 +127,9 @@ function Competition() {
               <div className="p-6">
                 <ul className="space-y-3">
                   {category.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-start">
+                    <li key={itemIndex} className="flex items-start text-gray-800">
                       <span className="text-indigo-500 mr-2 font-bold">•</span>
-                      <span>{item}</span>
+                      <span className="flex-1">{item}</span>
                     </li>
                   ))}
                 </ul>
