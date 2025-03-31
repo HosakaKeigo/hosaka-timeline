@@ -11,10 +11,17 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as InfrastructureImport } from './routes/infrastructure'
 import { Route as CompetitionImport } from './routes/competition'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const InfrastructureRoute = InfrastructureImport.update({
+  id: '/infrastructure',
+  path: '/infrastructure',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const CompetitionRoute = CompetitionImport.update({
   id: '/competition',
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CompetitionImport
       parentRoute: typeof rootRoute
     }
+    '/infrastructure': {
+      id: '/infrastructure'
+      path: '/infrastructure'
+      fullPath: '/infrastructure'
+      preLoaderRoute: typeof InfrastructureImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/competition': typeof CompetitionRoute
+  '/infrastructure': typeof InfrastructureRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/competition': typeof CompetitionRoute
+  '/infrastructure': typeof InfrastructureRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/competition': typeof CompetitionRoute
+  '/infrastructure': typeof InfrastructureRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/competition'
+  fullPaths: '/' | '/competition' | '/infrastructure'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/competition'
-  id: '__root__' | '/' | '/competition'
+  to: '/' | '/competition' | '/infrastructure'
+  id: '__root__' | '/' | '/competition' | '/infrastructure'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CompetitionRoute: typeof CompetitionRoute
+  InfrastructureRoute: typeof InfrastructureRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CompetitionRoute: CompetitionRoute,
+  InfrastructureRoute: InfrastructureRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/competition"
+        "/competition",
+        "/infrastructure"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/competition": {
       "filePath": "competition.tsx"
+    },
+    "/infrastructure": {
+      "filePath": "infrastructure.tsx"
     }
   }
 }

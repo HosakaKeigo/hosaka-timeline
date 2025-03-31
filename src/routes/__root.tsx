@@ -14,6 +14,9 @@ export const Route = createRootRoute({
             <Link to="/competition" className="[&.active]:font-bold hover:text-indigo-200 transition-colors">
               コンクール業績
             </Link>
+            <Link to="/infrastructure" className="[&.active]:font-bold hover:text-indigo-200 transition-colors">
+              IT基盤業務
+            </Link>
           </div>
         </div>
       </div>
