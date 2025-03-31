@@ -7,11 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
-  "homepage": "https://hosakakazuki.github.io/hosaka-timeline/",
+  "homepage": "https://HosakaKeigo.github.io/hosaka-timeline/",
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
